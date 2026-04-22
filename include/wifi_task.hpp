@@ -1,7 +1,7 @@
 /**
  * @file wifi_task.hpp
  * @brief Wi-Fi management using FreeRTOS tasks and the Arduino framework.
- * 
+ *
  * This library implements a singleton WiFi task responsible for handling
  * connection, reconnection, and shutdown logic. It uses an event group
  * to synchronize the state between the task and Wi-Fi event callbacks.
@@ -64,7 +64,7 @@ public:
     *
     * Creates the Wi-Fi FreeRTOS task if it is not already running and
     * initializes connection parameters.
-    * 
+    *
     * @param[in] arg Pointer to LoginData_t structure.
     *
     * @note If the task is already running, a warning is logged and no action is taken.

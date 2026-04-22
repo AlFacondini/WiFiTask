@@ -5,7 +5,7 @@
 LoginData_t login_data;
 EventGroupHandle_t event_group;
 
-void setup() 
+void setup()
 {
     Serial.begin(115200);
 
@@ -20,7 +20,7 @@ void setup()
     EventGroupHandle_t event_group = WiFiTask::get_instance().get_event_group();
 }
 
-void loop() 
+void loop()
 {
     // Start the Wi-Fi task
     WiFiTask::get_instance().wifi_start(login_data);

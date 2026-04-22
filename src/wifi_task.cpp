@@ -1,7 +1,7 @@
 /**
  * @file wifi_task.cpp
  * @brief Wi-Fi management using FreeRTOS tasks and the Arduino framework.
- * 
+ *
  * This library implements a singleton WiFi task responsible for handling
  * connection, reconnection, and shutdown logic. It uses an event group
  * to synchronize the state between the task and Wi-Fi event callbacks.
@@ -61,12 +61,12 @@ void WiFiTask::wifi_stop()
     }
 }
 
-EventGroupHandle_t WiFiTask::get_event_group() const 
+EventGroupHandle_t WiFiTask::get_event_group() const
 {
     return wifi_event_group;
 }
 
-WiFiTask::WiFiTask() : 
+WiFiTask::WiFiTask() :
     wifi_task_handle(nullptr),
     wifi_event_group(xEventGroupCreate()),
     wifi_retry_number(0)
@@ -143,12 +143,12 @@ void WiFiTask::wifi_task(void *arg)
                     pdFALSE,
                     pdFALSE,
                     pdMS_TO_TICKS(delay_ms));
-                    
+
                 if (!(wifi_drop_bits & WIFI_STOP_BIT) && !(wifi_drop_bits & WIFI_FAIL_BIT)) {
                     log_i("[Wi-Fi] Attempting to connect to Wi-Fi.");
 
-                    WiFi.reconnect();  
-                }                              
+                    WiFi.reconnect();
+                }
             }
         }
     }
