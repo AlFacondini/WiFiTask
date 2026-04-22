@@ -17,7 +17,7 @@ void setup()
     };
 
     // The FreeRTOS event group is used to communicate the Wi-Fi status
-    EventGroupHandle_t event_group = WiFiTask::get_instance().get_event_group();
+    event_group = WiFiTask::get_instance().get_event_group();
 }
 
 void loop()
