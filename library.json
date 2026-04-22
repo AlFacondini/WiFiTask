@@ -1,0 +1,40 @@
+{
+    "$schema": "https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/schema/library.json",
+    "name": "WiFiTask",
+    "version": "1.0.0",
+    "description": "ESP32 Wi-Fi task manager built on FreeRTOS and the Arduino framework. Provides a singleton interface for Wi-Fi control, supports reconnect with exponential backoff, and exposes connection state via event groups.",
+    "keywords": [
+        "esp32",
+        "wifi",
+        "freertos",
+        "task",
+        "reconnect",
+        "event-group",
+        "arduino"
+    ],
+    "repository":
+    {
+        "type": "git",
+        "url": "https://github.com/AlFacondini/WiFiTask"
+    },
+    "authors": [
+        {
+            "name": "Alberto Facondini",
+            "email": "alby.faco@gmail.com"
+        }
+    ],
+    "license": "BSD-3-Clause",
+    "frameworks": "arduino",
+    "platforms": "espressif32@^6.13.0",
+    "headers": "wifi_task.hpp",
+    "examples": [
+        {
+            "name": "wifi_basic",
+            "base": "examples/wifi_basic",
+            "files": ["src/main.cpp"]
+        }
+    ],
+    "dependencies": {
+
+    }
+}
