@@ -18,9 +18,6 @@ WiFiTask& WiFiTask::get_instance()
 void WiFiTask::wifi_start(const LoginData_t& config)
 {
     if (wifi_task_handle == nullptr) {
-        // Login data to be passed to the task, copied on the heap to avoid lifetime issues
-        static const LoginData_t *s_login_data = new LoginData_t(config);
-
         // Reset all Wi-Fi state bits before starting
         xEventGroupClearBits(
             wifi_event_group,
@@ -35,7 +32,7 @@ void WiFiTask::wifi_start(const LoginData_t& config)
             wifi_task,
             "wifi_task",
             WIFI_TASK_STACK_SIZE,
-            (void *) &s_login_data,
+            (void *) &config,
             WIFI_TASK_PRIORITY,
             &wifi_task_handle,
             WIFI_TASK_CORE_ID

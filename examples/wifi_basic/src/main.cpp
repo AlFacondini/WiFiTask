@@ -2,32 +2,26 @@
 
 #include "wifi_task.hpp"
 
-LoginData_t login_data;
-EventGroupHandle_t event_group;
+// Login data needs to be provided through a static LoginData_t struct
+static const EventGroupHandle_t event_group = {
+    .hostname = "esp32-demo",
+    .ssid = "YOUR_SSID",
+    .password = "YOUR_PASSWORD"
+};
 
 void setup()
 {
     Serial.begin(115200);
-
-    // Login data needs to be provided through a LoginData_t struct
-    login_data = {
-        .hostname = "esp32-demo",
-        .ssid = "YOUR_SSID",
-        .password = "YOUR_PASSWORD"
-    };
-
-    // The FreeRTOS event group is used to communicate the Wi-Fi status
-    event_group = WiFiTask::get_instance().get_event_group();
 }
 
 void loop()
 {
     // Start the Wi-Fi task
-    WiFiTask::get_instance().wifi_start(login_data);
+    WiFiTask::get_instance().wifi_start(s_login_data);
 
     // Wait until the connection attempt succeeds or fails
     EventBits_t bits = xEventGroupWaitBits(
-        event_group,
+        WiFiTask::get_instance().get_event_group(),
         WiFiTask::WIFI_CONNECTED_BIT | WiFiTask::WIFI_FAIL_BIT,
         pdFALSE,
         pdFALSE,
